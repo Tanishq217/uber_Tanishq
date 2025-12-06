@@ -36,8 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // Allow Login/Register
                         .requestMatchers("/api/v1/driver/**").hasRole("DRIVER") // Only Drivers
-                        .requestMatchers("/api/v1/rides/**").authenticated() // Any logged in user
-                        .requestMatchers("/api/v1/user/**").authenticated()
+                        .requestMatchers("/api/v1/user/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

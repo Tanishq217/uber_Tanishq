@@ -30,20 +30,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String authHeader = request.getHeader("Authorization");
-        final String jwt;
-        final String username;
+        String jwt = null;
+        String username = null;
 
         // 1. Check if token exists
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
-            return;
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            jwt = authHeader.substring(7);
+            try {
+                // FIXED: Wrapped in try-catch to ignore bad tokens on public pages (like Login)
+                username = jwtUtil.extractUsername(jwt);
+            } catch (Exception e) {
+                System.out.println("JWT Token invalid or expired: " + e.getMessage());
+                // Do not crash! Just let the request continue as "Anonymous"
+            }
         }
 
-        // 2. Extract token
-        jwt = authHeader.substring(7);
-        username = jwtUtil.extractUsername(jwt);
-
-        // 3. Validate token and set User in SecurityContext
+        // 2. Validate token and set User in SecurityContext
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
