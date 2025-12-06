@@ -3,10 +3,18 @@ spring:
     name: uber
   data:
     mongodb:
-      uri: mongodb://localhost:27017/rideshare_db
+      # username > tanishq2127tanishq_db_user
+      # password > JdQgIg6fT177FXtD
+      # string >  mongodb+srv://tanishq2127tanishq_db_user:JdQgIg6fT177FXtD@clusteruber.uizk4gn.mongodb.net/?appName=ClusterUber
+      uri: mongodb+srv://tanishq2127tanishq_db_user:JdQgIg6fT177FXtD@clusteruber.uizk4gn.mongodb.net/?appName=ClusterUber/Uber_Tanishq
       auto-index-creation: true
+      database: Uber_Tanishq
 
 # Custom properties for JWT
 jwt:
   secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
   expiration: 86400000 # 1 day in milliseconds
+
+
+
+
