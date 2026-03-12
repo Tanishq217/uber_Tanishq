@@ -13,7 +13,7 @@ This project implements a secure REST API that allows two types of users (`PASSE
 
 ## 🛠️ Tech Stack
 
-* **Java 17**
+* **Java  17**
 * **Spring Boot 3.2.1** (Web, Security, Validation)
 * **MongoDB Atlas** (Cloud Database)
 * **Spring Data MongoDB**
