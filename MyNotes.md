@@ -4,7 +4,7 @@ The Question/Context: You have a system that registers new students. It takes a 
 The Problem: The original OnboardingService was a "God Class". It did everything in one single method. This is bad because if you want to change how you save data, you might accidentally break how you validate data.
 
 The Solution: We applied the Single Responsibility Principle (SRP) by breaking the work into specialized classes:
-
+ 
 InputParser: Only handles splitting the raw text.
 
 StudentValidator: Only handles the rules (e.g., email must have @).
